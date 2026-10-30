@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Siddhivinayak Imitation Jewellery, Amravati</title>
+<style>
+  :root { --gold:#c9a227; --gold2:#e6c65c; --ink:#171310; --cream:#faf6ef; }
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  body { font-family: Georgia, 'Times New Roman', serif; background:var(--cream); color:var(--ink); }
+  header { background:var(--ink); color:var(--cream); padding:18px 16px; text-align:center; }
+  header h1 { font-size:1.35rem; letter-spacing:1px; color:var(--gold2); }
+  header p { font-size:.85rem; opacity:.8; margin-top:4px; }
+  section { max-width:560px; margin:0 auto; padding:26px 16px; }
+  .hero { text-align:center; }
+  .hero h2 { font-size:1.6rem; line-height:1.3; }
+  .hero h2 em { color:var(--gold); font-style:normal; }
+  .hero p { margin-top:10px; font-size:.95rem; opacity:.75; }
+  .btn { display:inline-block; margin-top:14px; background:var(--ink); color:var(--gold2); border:1px solid var(--gold);
+         padding:12px 26px; border-radius:999px; font-size:1rem; text-decoration:none; font-family:inherit; cursor:pointer; }
+  .btn.wa { background:#1f8f4d; color:#fff; border-color:#1f8f4d; }
+  .btn.ghost { background:transparent; }
+  .btn:disabled { opacity:.5; }
+  .btnrow { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
+  h3.sec { text-align:center; font-size:1.15rem; margin-bottom:16px; }
+  h3.sec span { color:var(--gold); }
+  .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+  .card { background:#fff; border:1px solid #e8e0d0; border-radius:12px; overflow:hidden; cursor:pointer; transition:border-color .2s; }
+  .card.sel { border-color:var(--gold); box-shadow:0 0 0 2px var(--gold2) inset; }
+  .card .thumb { width:100%; aspect-ratio:1; display:flex; align-items:center; justify-content:center; background:#fff; }
+  .card .thumb svg { width:86%; height:auto; }
+  .card div.pad { padding:8px 6px 10px; }
+  .card b { display:block; font-size:.82rem; }
+  .card i { font-size:.75rem; opacity:.6; }
+  .tabs { display:flex; gap:8px; justify-content:center; margin-bottom:14px; }
+  .tab { padding:8px 20px; border-radius:999px; border:1px solid var(--gold); background:transparent; font-family:inherit; font-size:.9rem; cursor:pointer; }
+  .tab.on { background:var(--ink); color:var(--gold2); }
+  #stage { position:relative; width:100%; aspect-ratio:3/4; background:#111; border-radius:16px; overflow:hidden; touch-action:none; }
+  #cam, #shot { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:none; }
+  #cam { transform:scaleX(-1); }
+  #overlay { position:absolute; left:50%; top:58%; width:44%; transform:translate(-50%,-50%); pointer-events:none;
+             filter:drop-shadow(0 2px 3px rgba(0,0,0,.5)); }
+  #overlay svg { width:100%; height:auto; display:block; }
+  #hint { position:absolute; left:12px; right:12px; bottom:12px; text-align:center; color:#fff; font-size:.8rem;
+          background:rgba(0,0,0,.45); padding:6px 10px; border-radius:10px; }
+  .tools { display:flex; align-items:center; gap:12px; margin-top:12px; flex-wrap:wrap; }
+  .tools label { font-size:.85rem; }
+  input[type=range] { flex:1; min-width:110px; accent-color:var(--gold); }
+  .chk { display:flex; align-items:center; gap:6px; font-size:.85rem; }
+  .pane { display:none; }
+  .pane.on { display:block; }
+  .spinner { width:34px; height:34px; border:3px solid #e8e0d0; border-top-color:var(--gold); border-radius:50%;
+             animation:sp 1s linear infinite; margin:14px auto; display:none; }
+  @keyframes sp { to { transform:rotate(360deg); } }
+  #aiMsg { text-align:center; font-size:.85rem; margin-top:10px; opacity:.8; min-height:1.2em; }
+  #aiMsg.err { color:#a33; opacity:1; }
+  #lastCap { width:100%; border-radius:12px; display:none; margin-top:12px; border:1px solid #e8e0d0; }
+  .settings { background:#fff; border:1px solid #e8e0d0; border-radius:12px; padding:12px; margin-top:14px; }
+  .settings input { width:100%; padding:10px; border:1px solid #ddd; border-radius:8px; font-family:monospace; font-size:.85rem; }
+  .settings p { font-size:.72rem; opacity:.6; margin-top:6px; }
+  .enq { background:var(--ink); color:var(--cream); border-radius:16px; padding:22px 16px; text-align:center; }
+  .enq h3 { color:var(--gold2); }
+  .enq p { font-size:.9rem; opacity:.8; margin:8px 0 14px; }
+  footer { text-align:center; font-size:.75rem; opacity:.55; padding:18px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>SIDDHIVINAYAK</h1>
+  <p>Imitation Jewellery &middot; Amravati</p>
+</header>
+
+<section class="hero">
+  <h2>Haar pehle <em>try karo</em>,<br>phir pasand karo</h2>
+  <p>AI live preview: necklace khud aapke gala par fit hota hai. Jo pasand aaye, photo lekar WhatsApp par bhej do.</p>
+  <div class="btnrow">
+    <button class="btn" onclick="document.getElementById('tryon').scrollIntoView({behavior:'smooth'})">Try On karo</button>
+    <a class="btn wa" href="https://wa.me/918446600660">WhatsApp</a>
+  </div>
+</section>
+
+<section>
+  <h3 class="sec">Hamara <span>Collection</span></h3>
+  <div class="grid" id="cards"></div>
+  <p style="text-align:center;font-size:.78rem;opacity:.55;margin-top:10px">Demo sample designs. Dukaan ki asli photos baad me lagengi.</p>
+</section>
+
+<section id="tryon">
+  <h3 class="sec">Virtual <span>Try-On</span></h3>
+  <div class="tabs">
+    <button class="tab on" id="tabLive" onclick="setMode('live')">AI Live Preview</button>
+    <button class="tab" id="tabAi" onclick="setMode('ai')">AI Style</button>
+  </div>
+
+  <div class="pane on" id="paneLive">
+    <div id="stage">
+      <video id="cam" autoplay playsinline muted></video>
+      <canvas id="shot"></canvas>
+      <div id="overlay"></div>
+      <p id="hint">Camera on karo, necklace aapke gala par khud fit hoga.</p>
+    </div>
+    <div class="tools">
+      <span class="chk"><input id="autoChk" type="checkbox" checked><label for="autoChk">Auto-fit (AI)</label></span>
+      <label>Size</label>
+      <input id="scale" type="range" min="20" max="90" value="44">
+      <button class="btn" id="shotBtn" style="margin-top:0;padding:10px 18px">Photo</button>
+    </div>
+    <button class="btn" id="startBtn" style="width:100%">Start Camera</button>
+    <img id="lastCap" alt="Aapka try-on">
+    <div class="btnrow" id="capRow" style="display:none">
+      <button class="btn wa" id="shareBtn" style="margin-top:0;padding:10px 18px">Share / Save</button>
+      <button class="btn ghost" id="againBtn" style="margin-top:0;padding:10px 18px">Phir try karo</button>
+    </div>
+  </div>
+
+  <div class="pane" id="paneAi">
+    <div style="position:relative;width:100%;aspect-ratio:3/4;background:#111;border-radius:16px;overflow:hidden">
+      <img id="aiSrc" alt="Aapki photo" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none">
+      <div class="spinner" id="aiSpin"></div>
+      <p id="hintAi" style="position:absolute;left:12px;right:12px;bottom:12px;text-align:center;color:#fff;font-size:.8rem;background:rgba(0,0,0,.45);padding:6px 10px;border-radius:10px;margin:0">Apni photo lo ya upload karo, phir AI necklace pehna dega.</p>
+    </div>
+    <div class="btnrow" style="margin-top:12px">
+      <button class="btn" id="aiCamBtn" style="margin-top:0;padding:10px 18px">Photo kheencho</button>
+      <label class="btn ghost" style="margin-top:0;padding:10px 18px;cursor:pointer">Upload<input id="aiFile" type="file" accept="image/*" hidden></label>
+    </div>
+    <button class="btn wa" id="aiGo" style="width:100%" disabled>AI se try karo</button>
+    <p id="aiMsg"></p>
+    <div class="settings">
+      <b style="font-size:.85rem">Gemini API key</b>
+      <input id="apiKey" type="password" placeholder="AIza...">
+      <p>Key sirf isi browser me save hoti hai, kahin bheji nahi jaati. AI Studio (aistudio.google.com/apikey) se lo. Free key par image quota na ho to billing enable karna hoga; Live Preview bina key ke chalta hai.</p>
+    </div>
+  </div>
+</section>
+
+<section class="enq">
+  <h3>Pasand aaya?</h3>
+  <p>Design ka photo WhatsApp par bhejo, hum dukaan me ready rakh denge.</p>
+  <div class="btnrow">
+    <a class="btn wa" href="https://wa.me/918446600660">WhatsApp par bhejo</a>
+    <a class="btn" href="tel:+918446600660" style="background:transparent;color:var(--gold2)">Call karo</a>
+  </div>
+</section>
+
+<footer>Demo &middot; built for Siddhivinayak Imitation Jewellery</footer>
+
+<script>
+function necklaceSVG(style, col){
+  const pendants = {
+    rani: '<circle cx="50" cy="30" r="9" fill="'+col+'"/><circle cx="50" cy="30" r="4" fill="#fff" opacity=".7"/><circle cx="34" cy="33" r="6" fill="'+col+'"/><circle cx="66" cy="33" r="6" fill="'+col+'"/><circle cx="21" cy="40" r="4.5" fill="'+col+'"/><circle cx="79" cy="40" r="4.5" fill="'+col+'"/>',
+    kundan: '<rect x="41" y="24" width="18" height="14" rx="3" fill="'+col+'" stroke="#7a5c12"/><rect x="45" y="28" width="10" height="6" rx="1.5" fill="#fff" opacity=".75"/><rect x="26" y="28" width="10" height="9" rx="2" fill="'+col+'" stroke="#7a5c12"/><rect x="64" y="28" width="10" height="9" rx="2" fill="'+col+'" stroke="#7a5c12"/>',
+    chand: '<path d="M50 22 a10 10 0 0 0 10 10 a10 10 0 0 1 -20 0 a10 10 0 0 1 10 -10" fill="'+col+'"/><circle cx="50" cy="26" r="3.5" fill="#fff" opacity=".8"/>'
+  };
+  return '<svg viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg">'
+   + '<path d="M10 12 Q50 40 90 12" fill="none" stroke="'+col+'" stroke-width="4.5" stroke-linecap="round"/>'
+   + '<path d="M10 12 Q50 40 90 12" fill="none" stroke="#fff" stroke-width="1" opacity=".35"/>'
+   + pendants[style] + '</svg>';
+}
+const N = [
+ {id:'rani', name:'Rani Haar', price:'\u20b9--', style:'rani', col:'#c9a227',
+  desc:'an ornate traditional Indian gold rani haar: multiple layered gold chains with round kundan medallions and pearl drop beads, ending in a large peacock-shaped kundan pendant'},
+ {id:'kundan', name:'Kundan Set', price:'\u20b9--', style:'kundan', col:'#e6c65c',
+  desc:'a traditional Indian gold-plated kundan bridal choker necklace: wide gold band covered with white kundan stones in floral patterns, gold bead drops hanging along the lower edge'},
+ {id:'chand', name:'Chandbali Chain', price:'\u20b9--', style:'chand', col:'#9aa0a8',
+  desc:'an oxidized silver chandbali necklace: thin silver chains holding a large crescent-moon shaped carved pendant with small white pearl drops hanging beneath'}
+];
+const cards = document.getElementById('cards');
+N.forEach(n => {
+  const c = document.createElement('div');
+  c.className = 'card' + (n.id==='rani' ? ' sel' : '');
+  c.innerHTML = '<div class="thumb">'+necklaceSVG(n.style, n.col)+'</div><div class="pad"><b>'+n.name+'</b><i>'+n.price+'</i></div>';
+  c.onclick = () => { document.querySelectorAll('.card').forEach(x=>x.classList.remove('sel'));
+    c.classList.add('sel'); select(n); };
+  cards.appendChild(c);
+});
+let current = N[0];
+const ov = document.getElementById('overlay');
+let svgImg = new Image();
+function select(n){
+  current = n;
+  ov.innerHTML = necklaceSVG(n.style, n.col);
+  svgImg = new Image();
+  svgImg.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(necklaceSVG(n.style, n.col));
+}
+select(current);
+
+function setMode(m){
+  document.getElementById('tabLive').classList.toggle('on', m==='live');
+  document.getElementById('tabAi').classList.toggle('on', m==='ai');
+  document.getElementById('paneLive').classList.toggle('on', m==='live');
+  document.getElementById('paneAi').classList.toggle('on', m==='ai');
+}
+
+/* ---- live mode ---- */
+const stage = document.getElementById('stage');
+const scale = document.getElementById('scale'), hintEl = document.getElementById('hint');
+function hint(t){ hintEl.textContent = t; }
+function setSize(){ if(!tracking){ ov.style.width = scale.value + '%'; } }
+scale.oninput = setSize;
+let tracking = false, auto = true, landmarker = null, modelState = 'idle';
+let lastT = null, lastGeo = null, smooth = null;
+const video = document.getElementById('cam'), shot = document.getElementById('shot');
+function geo(){
+  const vw = video.videoWidth, vh = video.videoHeight;
+  const sr = stage.getBoundingClientRect();
+  const sc = Math.max(sr.width/vw, sr.height/vh), dw = vw*sc, dh = vh*sc;
+  return {sc:sc, dw:dw, dh:dh, offX:(sr.width-dw)/2, offY:(sr.height-dh)/2, vw:vw, vh:vh, srw:sr.width, srh:sr.height};
+}
+async function ensureLandmarker(){
+  if(landmarker) return landmarker;
+  if(modelState === 'loading') return null;
+  modelState = 'loading'; hint('AI model load ho raha hai... pehli baar thoda wait hoga');
+  try {
+    const vision = await import('https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14');
+    const files = await vision.FilesetResolver.forVisionTasks('https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14/wasm');
+    const opts = d => ({baseOptions:{modelAssetPath:'https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task', delegate:d}, runningMode:'VIDEO', numFaces:1});
+    try { landmarker = await vision.FaceLandmarker.createFromOptions(files, opts('GPU')); }
+    catch(e) { landmarker = await vision.FaceLandmarker.createFromOptions(files, opts('CPU')); }
+    modelState = 'ready'; return landmarker;
+  } catch(e) { modelState = 'failed'; return null; }
+}
+document.getElementById('startBtn').onclick = async function(){
+  if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){ hint('Camera ke liye page ko mobile Chrome ya Safari me https par kholo.'); return; }
+  this.disabled = true; this.textContent = 'Camera on ho raha hai...';
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({video:{facingMode:'user', width:{ideal:1280}, height:{ideal:720}}, audio:false});
+    video.srcObject = stream; video.style.display = 'block'; shot.style.display = 'none';
+    await video.play();
+    this.style.display = 'none';
+    const lm = await ensureLandmarker();
+    if(lm && auto){ tracking = true; requestAnimationFrame(track); }
+    else if(!auto) hint('Necklace ko ungli se drag karke gala par set karo.');
+    else hint('AI tracking load nahi hui. Necklace ko ungli se drag karo.');
+  } catch(err) {
+    hint('Camera nahi khula. Browser me camera permission allow karo.');
+    this.disabled = false; this.textContent = 'Start Camera';
+  }
+};
+document.getElementById('autoChk').onchange = function(){
+  auto = this.checked;
+  if(auto && landmarker && video.videoWidth){ tracking = true; smooth = null; requestAnimationFrame(track); }
+  else if(!auto){ tracking = false; ov.style.transform = 'translate(-50%,-50%)'; hint('Necklace ko ungli se drag karke gala par set karo.'); }
+};
+function track(){
+  requestAnimationFrame(track);
+  if(!tracking || video.readyState < 2 || !landmarker) return;
+  let res;
+  try { res = landmarker.detectForVideo(video, performance.now()); } catch(e) { return; }
+  const lm = res.faceLandmarks && res.faceLandmarks[0];
+  if(!lm){ hint('Apna chehra camera me dikhao'); return; }
+  const g = geo();
+  const P = l => ({x:(1-l.x)*g.dw + g.offX, y:l.y*g.dh + g.offY});
+  const chin = P(lm[152]), eL = P(lm[33]), eR = P(lm[263]), jL = P(lm[234]), jR = P(lm[454]);
+  const eyeMid = {x:(eL.x+eR.x)/2, y:(eL.y+eR.y)/2};
+  const faceH = Math.hypot(chin.x-eyeMid.x, chin.y-eyeMid.y);
+  const cx = (jL.x+jR.x)/2, cy = chin.y + faceH*0.10;
+  const wpx = Math.hypot(jR.x-jL.x, jR.y-jL.y)*1.05;
+  const deg = Math.atan2(eR.y-eL.y, eR.x-eL.x)*180/Math.PI;
+  const t = {cx:cx, cy:cy, wpx:wpx, deg:deg};
+  if(smooth){ ['cx','cy','wpx','deg'].forEach(k => t[k] = smooth[k] + 0.35*(t[k]-smooth[k])); }
+  smooth = t; lastT = t; lastGeo = g;
+  ov.style.left = (t.cx/g.srw*100)+'%';
+  ov.style.top = (t.cy/g.srh*100)+'%';
+  ov.style.width = (t.wpx/g.srw*100)+'%';
+  ov.style.transform = 'translate(-50%,-50%) rotate('+t.deg+'deg)';
+  hint('Necklace khud gala par set ho raha hai. Photo le lo.');
+}
+let dragging = false;
+function move(x, y){
+  const r = stage.getBoundingClientRect();
+  const px = Math.min(Math.max((x-r.left)/r.width, .05), .95);
+  const py = Math.min(Math.max((y-r.top)/r.height, .05), .95);
+  ov.style.left = (px*100)+'%'; ov.style.top = (py*100)+'%';
+}
+stage.addEventListener('touchstart', e => { if(tracking) return; dragging = true; const t = e.touches[0]; move(t.clientX, t.clientY); }, {passive:true});
+stage.addEventListener('touchmove', e => { if(!dragging) return; const t = e.touches[0]; move(t.clientX, t.clientY); }, {passive:true});
+stage.addEventListener('touchend', () => dragging = false);
+stage.addEventListener('mousedown', e => { if(tracking) return; dragging = true; move(e.clientX, e.clientY); });
+window.addEventListener('mousemove', e => { if(dragging) move(e.clientX, e.clientY); });
+window.addEventListener('mouseup', () => dragging = false);
+document.getElementById('shotBtn').onclick = () => {
+  if(!video.videoWidth){ hint('Pehle camera start karo.'); return; }
+  const vw = video.videoWidth, vh = video.videoHeight;
+  shot.width = vw; shot.height = vh;
+  const ctx = shot.getContext('2d');
+  ctx.save(); ctx.translate(vw,0); ctx.scale(-1,1); ctx.drawImage(video,0,0,vw,vh); ctx.restore();
+  const g = lastGeo || geo();
+  let cx, cy, wpx, deg = 0;
+  if(lastT && tracking){
+    cx = (lastT.cx - g.offX)/g.sc; cy = (lastT.cy - g.offY)/g.sc; wpx = lastT.wpx/g.sc; deg = lastT.deg;
+  } else {
+    const r = ov.getBoundingClientRect(), sr = stage.getBoundingClientRect();
+    cx = (r.left + r.width/2 - g.offX)/g.sc; cy = (r.top + r.height/2 - g.offY)/g.sc; wpx = r.width/g.sc;
+  }
+  ctx.save(); ctx.translate(cx, cy); ctx.rotate(deg*Math.PI/180);
+  if(svgImg.complete && svgImg.naturalWidth) ctx.drawImage(svgImg, -wpx/2, -wpx*0.25, wpx, wpx*0.5);
+  ctx.restore();
+  video.style.display = 'none'; shot.style.display = 'block';
+  document.getElementById('lastCap').src = shot.toDataURL('image/jpeg', .85);
+  document.getElementById('lastCap').style.display = 'block';
+  document.getElementById('capRow').style.display = 'flex';
+  hint('Photo ban gayi. Share ya screenshot se WhatsApp par bhejo.');
+};
+document.getElementById('againBtn').onclick = () => {
+  shot.style.display = 'none'; video.style.display = 'block';
+  document.getElementById('lastCap').style.display = 'none';
+  document.getElementById('capRow').style.display = 'none';
+};
+document.getElementById('shareBtn').onclick = () => {
+  shot.toBlob(async b => {
+    if(!b) return;
+    const f = new File([b], 'siddhivinayak-tryon.png', {type:'image/png'});
+    if(navigator.canShare && navigator.canShare({files:[f]})){
+      try { await navigator.share({files:[f], title:'Mera try-on'}); return; } catch(e) {}
+    }
+    const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = 'siddhivinayak-tryon.png'; a.click();
+  });
+};
+
+/* ---- AI mode ---- */
+const keyInput = document.getElementById('apiKey');
+keyInput.value = localStorage.getItem('sv_gemini_key') || '';
+keyInput.oninput = () => localStorage.setItem('sv_gemini_key', keyInput.value.trim());
+const aiSrc = document.getElementById('aiSrc'), aiMsg = document.getElementById('aiMsg'), aiGo = document.getElementById('aiGo');
+let personB64 = null;
+const aiVideo = document.createElement('video');
+document.getElementById('aiCamBtn').onclick = async function(){
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({video:{facingMode:'user'}, audio:false});
+    aiVideo.srcObject = stream; aiVideo.muted = true; await aiVideo.play();
+    const c = document.createElement('canvas');
+    c.width = aiVideo.videoWidth; c.height = aiVideo.videoHeight;
+    const ctx = c.getContext('2d');
+    ctx.save(); ctx.translate(c.width,0); ctx.scale(-1,1); ctx.drawImage(aiVideo,0,0); ctx.restore();
+    stream.getTracks().forEach(t=>t.stop());
+    personB64 = c.toDataURL('image/jpeg', .9).split(',')[1];
+    aiSrc.src = 'data:image/jpeg;base64,' + personB64; aiSrc.style.display = 'block';
+    aiGo.disabled = false; aiMsg.textContent = ''; aiMsg.className = '';
+  } catch(err) { showErr('Camera nahi khula, permission allow karo.'); }
+};
+document.getElementById('aiFile').onchange = e => {
+  const f = e.target.files[0]; if(!f) return;
+  const img = new Image();
+  img.onload = () => {
+    const c = document.createElement('canvas');
+    const s = Math.min(1, 1024/Math.max(img.width, img.height));
+    c.width = img.width*s; c.height = img.height*s;
+    c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+    personB64 = c.toDataURL('image/jpeg', .9).split(',')[1];
+    aiSrc.src = 'data:image/jpeg;base64,' + personB64; aiSrc.style.display = 'block';
+    aiGo.disabled = false; aiMsg.textContent = ''; aiMsg.className = '';
+  };
+  img.src = URL.createObjectURL(f);
+};
+function showErr(m){ aiMsg.textContent = m; aiMsg.className = 'err'; }
+aiGo.onclick = async () => {
+  const key = keyInput.value.trim();
+  if(!key){ showErr('Pehle Gemini API key daalo (neeche settings me).'); return; }
+  if(!personB64){ showErr('Pehle apni photo lo ya upload karo.'); return; }
+  aiGo.disabled = true; document.getElementById('aiSpin').style.display = 'block';
+  aiMsg.textContent = 'AI necklace pehna raha hai... thoda wait karo'; aiMsg.className = '';
+  const prompt = 'Virtual necklace try-on. The person is already wearing nothing on the neck. Place ' + current.desc + ' naturally on the person\'s neck, as if they are wearing it. Keep the face, hair, skin tone, clothing and background exactly unchanged. Match perspective, lighting and shadows so it looks like a real photograph. Output only the edited photo.';
+  try {
+    const res = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent?key=' + encodeURIComponent(key), {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({contents:[{role:'user', parts:[
+        {inline_data:{mime_type:'image/jpeg', data:personB64}},
+        {text:prompt}
+      ]}]})
+    });
+    const j = await res.json();
+    if(!res.ok){
+      if(res.status === 429) showErr('Is key ka image quota khatam hai. AI Studio me isi key wale project par billing enable karo, ya kal try karo.');
+      else if(res.status === 400 && (j.error && /API_KEY_INVALID/i.test(j.error.message||''))) showErr('Key galat lag rahi hai. Naye se check karo.');
+      else if(res.status === 403) showErr('Key mana ho gayi (permission/restriction). AI Studio me key settings check karo.');
+      else showErr('AI ne jawab nahi diya (' + res.status + '). Dobara try karo.');
+    } else {
+      let out = null;
+      (j.candidates?.[0]?.content?.parts || []).forEach(p => { if(p.inlineData) out = p.inlineData.data; });
+      if(out){
+        aiSrc.src = 'data:image/png;base64,' + out;
+        document.getElementById('hintAi').textContent = 'Ho gaya! Screenshot ya save karke WhatsApp par bhejo.';
+        aiMsg.textContent = ''; aiMsg.className = '';
+      } else showErr('AI ne photo nahi bheji, dobara try karo.');
+    }
+  } catch(err) { showErr('Network problem, dobara try karo.'); }
+  aiGo.disabled = false; document.getElementById('aiSpin').style.display = 'none';
+};
+</script>
+</body>
+</html>
